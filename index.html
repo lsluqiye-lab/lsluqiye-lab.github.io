@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Qiye Lu — Financial Risk ML &amp; LLM Agents</title>
+<meta name="description" content="Personal academic homepage of Qiye Lu — machine learning and LLM-agent systems for financial risk: credit scoring, fraud detection, and governed multi-agent harnesses that accelerate algorithm development." />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎓</text></svg>" />
+<style>
+  :root{
+    --bg:#ffffff; --bg-soft:#f6f8fa; --bg-hero:#fbfcfe;
+    --ink:#1a202c; --ink-soft:#414d5f; --muted:#5a6779;
+    --brand:#1e3a8a; --brand-2:#2c5282; --brand-soft:#eef2ff;
+    --accent:#c9a227; --border:#e2e8f0; --shadow:0 1px 3px rgba(16,24,40,.06),0 1px 2px rgba(16,24,40,.04);
+    --shadow-lg:0 10px 30px rgba(16,24,40,.08);
+    --review-bg:#fffbeb; --review-ink:#92400e;
+    --pending-bg:#f1f5f9; --pending-ink:#475569;
+    --prep-bg:#eff6ff;   --prep-ink:#1d4ed8;
+    --pub-bg:#ecfdf5;    --pub-ink:#065f46;
+    --maxw:860px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;scroll-padding-top:76px}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans SC","PingFang SC",sans-serif;
+    color:var(--ink);background:var(--bg);line-height:1.65;-webkit-font-smoothing:antialiased;
+  }
+  a{color:var(--brand);text-decoration:none}
+  a:hover{text-decoration:underline}
+
+  /* top accent bar */
+  .accent-bar{height:4px;background:linear-gradient(90deg,var(--brand),var(--accent));}
+
+  /* nav */
+  nav{
+    position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);
+    backdrop-filter:saturate(180%) blur(8px);border-bottom:1px solid var(--border);
+  }
+  .nav-inner{max-width:var(--maxw);margin:0 auto;padding:12px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+  .nav-name{font-weight:700;color:var(--ink);font-size:15px;letter-spacing:.2px}
+  .nav-links{display:flex;gap:20px;flex-wrap:wrap}
+  .nav-links a{color:var(--ink-soft);font-size:14px;font-weight:500}
+  .nav-links a:hover{color:var(--brand);text-decoration:none}
+
+  /* hero */
+  header.hero{background:var(--bg-hero);border-bottom:1px solid var(--border)}
+  .hero-inner{max-width:var(--maxw);margin:0 auto;padding:52px 24px 46px;display:flex;gap:32px;align-items:center}
+  .avatar{
+    flex:0 0 auto;width:118px;height:118px;border-radius:50%;
+    background:linear-gradient(135deg,var(--brand),var(--brand-2));
+    color:#fff;display:flex;align-items:center;justify-content:center;
+    font-size:42px;font-weight:700;letter-spacing:1px;box-shadow:var(--shadow-lg);
+  }
+  .hero-text h1{font-size:32px;line-height:1.2;font-weight:800;letter-spacing:-.3px}
+  .hero-text .role{margin-top:6px;font-size:16px;color:var(--brand);font-weight:600}
+  .hero-text .affil{margin-top:4px;font-size:15px;color:var(--ink-soft)}
+  .hero-text .tagline{margin-top:12px;font-size:14.5px;color:var(--muted);max-width:52ch}
+  .contact{margin-top:16px;display:flex;gap:10px;flex-wrap:wrap}
+  .contact a{
+    display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border:1px solid var(--border);
+    border-radius:999px;font-size:13px;color:var(--ink-soft);background:#fff;transition:.15s;
+  }
+  .contact a:hover{border-color:var(--brand);color:var(--brand);text-decoration:none;transform:translateY(-1px)}
+  .contact a.soon{opacity:.55;cursor:not-allowed}
+  .contact a.soon:hover{border-color:var(--border);color:var(--ink-soft);transform:none}
+  .contact svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+
+  /* main */
+  main{max-width:var(--maxw);margin:0 auto;padding:8px 24px 40px}
+  section{padding:34px 0;border-bottom:1px solid var(--border)}
+  section:last-child{border-bottom:none}
+  h2.sec{font-size:13px;font-weight:800;letter-spacing:1.6px;text-transform:uppercase;color:var(--brand);margin-bottom:18px;display:flex;align-items:center;gap:10px}
+  h2.sec::after{content:"";flex:1;height:1px;background:var(--border)}
+
+  p.lead{font-size:15.5px;color:var(--ink-soft)}
+  p.lead + p.lead{margin-top:12px}
+
+  /* research tags */
+  .tags{display:flex;flex-wrap:wrap;gap:9px}
+  .tag{background:var(--brand-soft);color:var(--brand);border:1px solid #dbe3ff;padding:6px 13px;border-radius:8px;font-size:13.5px;font-weight:500}
+
+  /* entry cards (publications / patents) */
+  .entry{padding:18px 0;border-top:1px dashed var(--border)}
+  .entry:first-of-type{border-top:none;padding-top:4px}
+  .entry-head{display:flex;align-items:flex-start;justify-content:space-between;gap:14px}
+  .entry-title{font-size:16px;font-weight:700;color:var(--ink);line-height:1.4}
+  .entry-title .withheld{font-style:italic;color:var(--muted);font-weight:600}
+  .badge{flex:0 0 auto;font-size:11.5px;font-weight:700;letter-spacing:.4px;padding:4px 10px;border-radius:999px;white-space:nowrap;text-transform:uppercase}
+  .b-review{background:var(--review-bg);color:var(--review-ink)}
+  .b-pending{background:var(--pending-bg);color:var(--pending-ink)}
+  .b-prep{background:var(--prep-bg);color:var(--prep-ink)}
+  .b-pub{background:var(--pub-bg);color:var(--pub-ink)}
+  .entry-venue{margin-top:5px;font-size:14px;color:var(--ink-soft)}
+  .entry-authors{margin-top:3px;font-size:13.5px;color:var(--muted)}
+  .entry-note{margin-top:8px;font-size:13px;color:var(--muted);background:var(--bg-soft);border-left:3px solid var(--border);padding:8px 12px;border-radius:0 6px 6px 0}
+  .entry-links{margin-top:10px;display:flex;gap:14px;font-size:13.5px;font-weight:500}
+  .entry-links span.off{color:var(--muted);opacity:.6}
+
+  /* timeline (CV) */
+  .tl{list-style:none}
+  .tl li{position:relative;padding:0 0 20px 24px;border-left:2px solid var(--border)}
+  .tl li:last-child{padding-bottom:0;border-left-color:transparent}
+  .tl li::before{content:"";position:absolute;left:-7px;top:4px;width:12px;height:12px;border-radius:50%;background:#fff;border:2px solid var(--brand)}
+  .tl .when{font-size:12.5px;color:var(--muted);font-weight:600;letter-spacing:.3px}
+  .tl .what{font-size:15px;font-weight:600;color:var(--ink);margin-top:1px}
+  .tl .where{font-size:14px;color:var(--ink-soft)}
+  .tl-detail{margin-top:7px}
+  .tl-detail div{position:relative;padding-left:14px;font-size:13.5px;color:var(--ink-soft);line-height:1.55;margin-bottom:5px}
+  .tl-detail div::before{content:"";position:absolute;left:2px;top:8px;width:4px;height:4px;border-radius:50%;background:var(--muted)}
+  .tl-detail div:last-child{margin-bottom:0}
+
+  /* callout */
+  .callout{background:var(--brand-soft);border:1px solid #dbe3ff;border-radius:10px;padding:16px 18px;font-size:14px;color:var(--brand-2)}
+  .callout strong{color:var(--brand)}
+
+  footer{background:var(--bg-soft);border-top:1px solid var(--border);margin-top:20px}
+  .foot-inner{max-width:var(--maxw);margin:0 auto;padding:26px 24px;font-size:13px;color:var(--muted);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+
+  @media (max-width:640px){
+    .hero-inner{flex-direction:column;text-align:center;padding:40px 20px 34px;gap:20px}
+    .contact{justify-content:center}
+    .hero-text .tagline{margin-left:auto;margin-right:auto}
+    .entry-head{flex-direction:column-reverse;gap:8px}
+    .nav-links{gap:4px}
+    .nav-links a{padding:10px 6px;font-size:15px}
+    .contact a{padding:11px 15px;font-size:14px}
+    .nav-name{display:none}
+    .foot-inner{flex-direction:column;text-align:center}
+  }
+</style>
+</head>
+<body>
+<div class="accent-bar"></div>
+
+<nav>
+  <div class="nav-inner">
+    <span class="nav-name">Qiye Lu</span>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#research">Research</a>
+      <a href="#publications">Publications</a>
+      <a href="#patents">Patents</a>
+      <a href="#cv">CV</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="hero-inner">
+    <div class="avatar">QL</div>
+    <div class="hero-text">
+      <h1>Qiye Lu</h1>
+      <div class="role">Staff Algorithm Engineer · Financial Risk ML &amp; LLM-Agent Systems</div>
+      <div class="affil">Ant International</div>
+      <div class="tagline">Building machine-learning and LLM-agent systems for financial risk — vertically, credit and fraud risk modeling across the full lending lifecycle; horizontally, multi-agent harnesses that make algorithm development faster, better governed, and easier to evaluate.</div>
+      <div class="contact">
+        <a href="mailto:lsluqiye@gmail.com" title="lsluqiye@gmail.com">
+          <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          Email
+        </a>
+        <a class="soon" href="#" title="Coming soon — will be linked once publications are indexed" onclick="return false;">
+          <svg viewBox="0 0 24 24"><path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3z"/><path d="M5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82z"/></svg>
+          Scholar
+        </a>
+        <a href="https://github.com/lsluqiye-lab" target="_blank" rel="noopener" title="GitHub · lsluqiye-lab">
+          <svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+          GitHub
+        </a>
+        <a href="https://orcid.org/0009-0007-6773-1296" target="_blank" rel="noopener" title="ORCID · 0009-0007-6773-1296">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M8 8v8M8 5.5v.01M12 16v-5m0-1.5v.01M12 16c0 0 3.5.5 3.5-2.5S12 11 12 11"/></svg>
+          ORCID
+        </a>
+        <a class="soon" href="#" onclick="return false;" title="LinkedIn — optional, add your profile to activate">
+          <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          LinkedIn
+        </a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <section id="about">
+    <h2 class="sec">About</h2>
+    <p class="lead">
+      I work at the intersection of machine learning and financial risk. My focus is on
+      <strong>credit risk modeling</strong> and <strong>fraud detection</strong>, with a research
+      thread on how to inject <em>external knowledge</em> — from domain experts, teacher models, or
+      large language models — into lightweight, deployable scoring models.
+    </p>
+    <p class="lead">
+      Much of my work targets the hard, practical regimes of industrial finance: <strong>cold start</strong>
+      (scarce labels, immature features), <strong>temporal distribution shift</strong> (models trained on history
+      but scored on the future), and <strong>robustness to noisy supervision</strong>. I care about methods that are
+      not only accurate but interpretable, stable over time, and cheap to serve in production.
+    </p>
+    <p class="lead">
+      Beyond modeling, I build the <strong>agent systems</strong> around it — LLM multi-agent harnesses
+      that automate and govern algorithm development, from experimentation and evaluation to deployment —
+      so that domain expertise scales across business lines instead of bottlenecking on any one person.
+    </p>
+  </section>
+
+  <section id="research">
+    <h2 class="sec">Research Interests</h2>
+    <div class="tags">
+      <span class="tag">Credit Risk Modeling</span>
+      <span class="tag">Financial Machine Learning</span>
+      <span class="tag">LLM-guided Learning</span>
+      <span class="tag">LLM Agents</span>
+      <span class="tag">Multi-Agent Systems</span>
+      <span class="tag">Agent Evaluation</span>
+      <span class="tag">Automated Algorithm Development</span>
+      <span class="tag">Multiple Instance Learning</span>
+      <span class="tag">Fraud Detection</span>
+      <span class="tag">Knowledge Distillation</span>
+      <span class="tag">Distribution Shift &amp; OOT Robustness</span>
+      <span class="tag">Interpretable ML</span>
+    </div>
+  </section>
+
+  <section id="publications">
+    <h2 class="sec">Publications</h2>
+
+    <div class="entry">
+      <div class="entry-head">
+        <div class="entry-title">When Do External Priors Help Low-Resource Structured Prediction? A Ranking-Level Alignment Study</div>
+        <span class="badge b-pub">Preprint</span>
+      </div>
+      <div class="entry-venue">arXiv preprint · cs.LG · Oct 2026</div>
+      <div class="entry-authors"><strong>Qiye Lu</strong>, Jiang Ji, Liang Zhang</div>
+      <div class="entry-note">A model-agnostic training objective — Ranking Prior Alignment — that aligns a model's ranking distribution to an external prior (teacher models, LLMs, or domain experts) via a temperature-scaled, annealed KL loss, requiring no external model at inference. Across tree-ensemble and multiple-instance-learning instantiations, we study when such priors genuinely transfer information versus merely act as a regularizer in low-resource, cold-start regimes.</div>
+      <div class="entry-links">
+        <a href="https://arxiv.org/abs/2610.11146" target="_blank" rel="noopener">arXiv</a><a href="https://arxiv.org/pdf/2610.11146" target="_blank" rel="noopener">PDF</a>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-head">
+        <div class="entry-title"><span class="withheld">Upcoming work — agentic systems for financial ML</span></div>
+        <span class="badge b-prep">In Preparation</span>
+      </div>
+      <div class="entry-venue">Research in progress · details pending external-disclosure approval</div>
+      <div class="entry-note">Building LLM-agent systems that make financial-ML algorithm development faster, better governed, and easier to evaluate. Title, authors and links will appear here once cleared for public disclosure.</div>
+    </div>
+  </section>
+
+  <section id="patents">
+    <h2 class="sec">Patents</h2>
+    <div class="entry">
+      <div class="entry-head">
+        <div class="entry-title"><span class="withheld">Invention disclosure — title pending publication</span></div>
+        <span class="badge b-pending">Filed / Pending</span>
+      </div>
+      <div class="entry-venue">Invention Disclosure (Patent) · Assignee: [withheld]</div>
+      <div class="entry-note">Subject: a method for injecting external knowledge into financial-risk scoring models. Patent number and public details will be added after publication.</div>
+      <div class="entry-links"><span class="off">Google Patents (soon)</span></div>
+    </div>
+  </section>
+
+  <section id="cv">
+    <h2 class="sec">Experience &amp; Education</h2>
+    <ul class="tl">
+      <li>
+        <div class="when">2025 — Present</div>
+        <div class="what">Staff Algorithm Engineer — Financial Risk ML &amp; LLM-Agent Systems</div>
+        <div class="where">Ant International</div>
+        <div class="tl-detail">
+          <div>Credit risk modeling across the full lending lifecycle — application, behavior, and collection scorecards (A/B/C).</div>
+          <div>Fraud detection with graph-based methods and organized-group (ring) mining.</div>
+          <div>Weakly-supervised modeling via multiple-instance learning (MIL) and multi-task learning (MTL) — end-to-end scoring of composite entities (e.g., a corporate borrower made of multiple sub-units), preserving fine-grained signal lost by feature aggregation, with attention-based instance-level risk attribution.</div>
+          <div>Methods for low-data regimes: cold start, temporal distribution shift (OOT), and robustness to noisy supervision.</div>
+          <div>LLM multi-agent systems that automate and govern algorithm development — experimentation, evaluation, and deployment.</div>
+        </div>
+      </li>
+      <li>
+        <div class="when">2022 — 2025</div>
+        <div class="what">Senior Algorithm Engineer</div>
+        <div class="where">Alibaba Group</div>
+      </li>
+      <li>
+        <div class="when">2021 — 2022</div>
+        <div class="what">Algorithm Engineer</div>
+        <div class="where">Ant Group</div>
+      </li>
+      <li>
+        <div class="when">2019 — 2020</div>
+        <div class="what">M.S. in Computer Science</div>
+        <div class="where">University of Texas at Arlington (UTA)</div>
+      </li>
+      <li>
+        <div class="when">2017 — 2019</div>
+        <div class="what">M.Eng. in Computer Engineering</div>
+        <div class="where">Beijing University of Posts and Telecommunications (BUPT)</div>
+      </li>
+    </ul>
+  </section>
+
+</main>
+
+<footer>
+  <div class="foot-inner">
+    <span>© 2026 Qiye Lu · Last updated October 2026</span>
+    <span>Google Scholar profile will be linked here once publications are indexed.</span>
+  </div>
+</footer>
+
+</body>
+</html>
